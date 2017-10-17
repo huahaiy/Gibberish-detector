@@ -11,16 +11,16 @@ Download from http://example.com/FIXME.
 
 ## Usage
 
-Require ~[gibberish-detector.detect]~
+Require ```[gibberish-detector.detect]```
 
 
 ## Examples
 
-~(evaluate "dafsfaenadf")~ => true
-~(evaluate "hello")~ => false
-~(evaluate "dafdsfa hello")~ => true
-~(evaluate "Hey what's up")~ => false
-~(evaluate "i adfsaf afeia dasf safsa nnn12")~ => true
+```(evaluate "dafsfaenadf")``` => true
+```(evaluate "hello")``` => false
+```(evaluate "dafdsfa hello")``` => true
+```(evaluate "Hey what's up")``` => false
+```(evaluate "i adfsaf afeia dasf safsa nnn12")``` => true
 
 ### Bugs
 
