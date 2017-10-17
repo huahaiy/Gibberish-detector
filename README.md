@@ -1,3 +1,6 @@
+[![Clojars Project](https://img.shields.io/clojars/v/juji/gibberish-detector.svg)](https://clojars.org/juji/gibberish-detector)
+
+
 # gibberish-detector
 
 Gibberish-detector is a Clojure port of @rrenaud's python [gibberish detector](https://github.com/rrenaud/Gibberish-Detector).
@@ -7,7 +10,12 @@ A key difference between this implementation and @rrenaud's is that in this impl
 
 ## Installation
 
-[![Clojars Project](https://img.shields.io/clojars/v/juji/gibberish-detector.svg)](https://clojars.org/juji/gibberish-detector)
+```[juji/gibberish-detector "0.1.2-SNAPSHOT"]```
+
+OR
+
+```git clone https://github.com/slandau4/Gibberish-detector```
+Note: You will have to do ```lein run``` in order for the program to generate the data file it needs to determine if input is gibberish. After that simply call is the ```is-gibberish?``` function in ```detect.clj```.
 
 ## Usage
 
