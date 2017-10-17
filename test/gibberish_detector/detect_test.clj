@@ -6,10 +6,10 @@
 
 (deftest evaluation-test
   (is (= true
-         (evaluate "afdalfsafsaiaafdasfasasfasff")))
+         (is-gibberish? "afdalfsafsaiaafdasfasasfasff")))
   (is (= false
-         (evaluate "hello what's up I'm good how about you. Good thankshello what's up I'm good how about you. Good thankshello what's up I'm good how about you. Good thankshello what's up I'm good how about you. Good thankshello what's up I'm good how about you. Good thankshello what's up I'm good how about you. Good thankshello what's up I'm good how about you. Good thankjs")))
+         (is-gibberish? "hello what's up I'm good how about you. Good thankshello what's up I'm good how about you. Good thankshello what's up I'm good how about you. Good thankshello what's up I'm good how about you. Good thankshello what's up I'm good how about you. Good thankshello what's up I'm good how about you. Good thankshello what's up I'm good how about you. Good thankjs")))
   (is (= true
-         (evaluate "jadfadadfa")))
+         (is-gibberish? "jadfadadfa")))
   (is (= false
-         (evaluate "yo"))))
+         (is-gibberish? "yo"))))

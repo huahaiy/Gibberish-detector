@@ -3,7 +3,7 @@
             [clojure.edn :as edn]))
 
 
-(defn evaluate
+(defn is-gibberish?
   [input]
   (let [data (edn/read-string (slurp "gib_model.edn"))
         mat (:mat data)

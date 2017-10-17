@@ -16,21 +16,19 @@ Require ```[gibberish-detector.detect]```
 
 ## Examples
 
-```(evaluate "dafsfaenadf")``` => true
+```(is-gibberish? "dafsfaenadf")``` => true
 
-```(evaluate "hello")``` => false
+```(is-gibberish? "hello")``` => false
 
-```(evaluate "dafdsfa hello")``` => true
+```(is-gibberish? "dafdsfa hello")``` => true
 
-```(evaluate "Hey what's up")``` => false
+```(is-gibberish? "Hey what's up")``` => false
 
-```(evaluate "i adfsaf afeia dasf safsa nnn12")``` => true
+```(is-gibberish? "i adfsaf afeia dasf safsa nnn12")``` => true
 
-### Bugs
-
-## TODO
 
 ### Might be Useful
+
 
 ## License
 
