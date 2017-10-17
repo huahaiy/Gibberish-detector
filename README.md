@@ -1,6 +1,9 @@
 # gibberish-detector
 
-FIXME: description
+Gibberish-detector is a Clojure port of @rrenaud's python [gibberish detector](https://github.com/rrenaud/Gibberish-Detector).
+For a full description of how it works, please refer to his README.
+
+A key difference between this implementation and @rrenaud's is that in this implementation, false will be printed if a sentence is not gibberish and true will be printed if it is.
 
 ## Installation
 
@@ -8,24 +11,21 @@ Download from http://example.com/FIXME.
 
 ## Usage
 
-FIXME: explanation
+Require ~[gibberish-detector.detect]~
 
-    $ java -jar gibberish-detector-0.1.0-standalone.jar [args]
-
-## Options
-
-FIXME: listing of options this app accepts.
 
 ## Examples
 
-...
+~(evaluate "dafsfaenadf")~ => true
+~(evaluate "hello")~ => false
+~(evaluate "dafdsfa hello")~ => true
+~(evaluate "Hey what's up")~ => false
+~(evaluate "i adfsaf afeia dasf safsa nnn12")~ => true
 
 ### Bugs
 
-...
+## TODO
 
-### Any Other Sections
-### That You Think
 ### Might be Useful
 
 ## License

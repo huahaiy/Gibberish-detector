@@ -11,16 +11,15 @@
 
 (def pos (apply merge (map-indexed (fn [idx value] {value idx}) accepted-chars)))
 
-(defn normalize
+(defn- normalize
   "Return only the subset of chars from accepted_chars.
     This helps keep the  model relatively small by ignoring punctuation,
     infrequenty symbols, etc."
   [line]
   (vec (filter #(accepted-chars %) (mapv s/lower-case line))))
 
- ;; TODO: check this
 
-(defn ngram
+(defn- ngram
   "Return all ngrams from l after normalizing"
   [n l]
   (let [filtered (normalize l)
@@ -51,7 +50,7 @@
   [val s]
   (Math/log (/ val s)))
 
-(defn train
+(defn- train
   " Write a simple model as a pickle file "
   []
   (let [k (count accepted-chars)
