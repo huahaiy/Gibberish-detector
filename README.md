@@ -7,7 +7,7 @@ A key difference between this implementation and @rrenaud's is that in this impl
 
 ## Installation
 
-Download from http://example.com/FIXME.
+[![Clojars Project](https://img.shields.io/clojars/v/juji/gibberish-detector.svg)](https://clojars.org/juji/gibberish-detector)
 
 ## Usage
 
