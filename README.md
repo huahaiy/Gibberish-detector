@@ -10,7 +10,9 @@ A key difference between this implementation and @rrenaud's is that in this impl
 
 ## Installation
 
-```[juji/gibberish-detector "0.1.2-SNAPSHOT"]```
+```clojure 
+[juji/gibberish-detector "0.1.2-SNAPSHOT"]
+```
 
 OR
 
@@ -68,7 +70,7 @@ Every line in ```bad.txt``` consists of random characters (aka gibberish).
 If you wish to replace ```bad.txt``` with another file whose lines are NOT gibberish then simply change ```"bad.txt"``` to the name of the new file located in the root project directory.
 ## License
 
-Copyright © 2017 FIXME
+Copyright © 2017 
 
 Distributed under the Eclipse Public License either version 1.0 or (at
 your option) any later version.
