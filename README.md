@@ -28,8 +28,36 @@ Require ```[gibberish-detector.detect]```
 
 
 ### Might be Useful
+#### Adding more data
+##### big.txt
+The ```big.txt``` file is used in ```trainer.clj``` to initialize the markov chain. 
+```clojure
+(with-open [rdr (clojure.java.io/reader "big.txt")]
+  (doseq [line (line-seq rdr)]
+    (doseq [[a b] (ngram 2 line)]
+      (swap! counts #(update-in % [(pos a) (pos b)] inc)))))
+```
+If you wish to replace big.txt with another large text file, replace ```"big.txt"``` with the name of the new file. 
+The new file should be located in the root project directory.
 
+##### good.txt
+The ```good.txt``` file is used in ```trainer.clj``` to obtain a vector of average-transition-probabilities of words we know to be not gibberish.
+```clojure
+(with-open [rdr (clojure.java.io/reader "good.txt")]
+        (doseq [line (line-seq rdr)]
+          (swap! good-probs #(conj % (avg-transition-prob line @counts)))))
+```
+If you wish to replace ```goood.txt``` with another file whose lines are NOT gibberish then simply change ```"good.txt"``` to the name of a new file located in the root project directory.
 
+##### bad.txt
+The ```bad.txt``` file is used in ```trainer.clj``` to obtain a vector of average-transition-probabilities of words we know to be gibberish.
+Every line in ```bad.txt``` consists of random characters (aka gibberish).
+```clojure
+(with-open [rdr (clojure.java.io/reader "bad.txt")]
+        (doseq [line (line-seq rdr)]
+          (swap! bad-probs #(conj % (avg-transition-prob line @counts)))))
+```
+If you wish to replace ```bad.txt``` with another file whose lines are NOT gibberish then simply change ```"bad.txt"``` to the name of the new file located in the root project directory.
 ## License
 
 Copyright © 2017 FIXME
