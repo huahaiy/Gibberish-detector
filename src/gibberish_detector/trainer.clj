@@ -1,8 +1,5 @@
 (ns gibberish-detector.trainer
-  (:require [clojure.string :as s]
-            [taoensso.timbre :as timbre :refer [log debug spy]]
-            [clojure.edn :as edn]
-            [clojure.math.numeric-tower :as math]))
+  (:require [clojure.string :as s]))
 
 
 (def accepted-chars #{"a" "b" "c" "d" "e" "f" "g" "h" "i"
