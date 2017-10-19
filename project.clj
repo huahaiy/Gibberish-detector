@@ -1,4 +1,4 @@
-(defproject juji/gibberish-detector "0.1.6-SNAPSHOT"
+(defproject juji/gibberish-detector "0.1.7-SNAPSHOT"
   :description "Detects if user input is gibberish."
   :url "http://example.com/FIXME"
   :license {:name "Eclipse Public License"
