@@ -63,7 +63,7 @@
     ; Count transitions from big text file, taken
     ; from http://norvig.com/spell-correct.html
 
-    (with-open [rdr (clojure.java.io/reader "big.txt")]
+    (with-open [rdr (clojure.java.io/reader "resources/big.txt")]
       (doseq [line (line-seq rdr)]
         (doseq [[a b] (ngram 2 line)]
           (swap! counts #(update-in % [(pos a) (pos b)] inc)))))
@@ -85,16 +85,16 @@
           ]
 
 
-      (with-open [rdr (clojure.java.io/reader "good.txt")]
+      (with-open [rdr (clojure.java.io/reader "resources/good.txt")]
         (doseq [line (line-seq rdr)]
           (swap! good-probs #(conj % (avg-transition-prob line @counts)))
           ))
 
-      (with-open [rdr (clojure.java.io/reader "bad.txt")]
+      (with-open [rdr (clojure.java.io/reader "resources/bad.txt")]
         (doseq [line (line-seq rdr)]
           (swap! bad-probs #(conj % (avg-transition-prob line @counts)))))
 
-      (spit "gib_model.edn" (prn-str {:mat @counts :thresh (/ (+ (apply min @good-probs) (apply max @bad-probs)) 2)}))
+      (spit "resources/gib_model.edn" (prn-str {:mat @counts :thresh (/ (+ (apply min @good-probs) (apply max @bad-probs)) 2)}))
       )
 ))
 

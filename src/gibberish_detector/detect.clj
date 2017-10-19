@@ -5,7 +5,7 @@
 
 (defn is-gibberish?
   [input]
-  (let [data (edn/read-string (slurp "gib_model.edn"))
+  (let [data (edn/read-string (slurp "resources/gib_model.edn"))
         mat (:mat data)
         thresh (:thresh data)]
     (<= (trainer/avg-transition-prob input mat) thresh)))
