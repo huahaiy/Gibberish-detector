@@ -94,7 +94,7 @@
         (doseq [line (line-seq rdr)]
           (swap! bad-probs #(conj % (avg-transition-prob line @counts)))))
 
-      (spit "gib_model.edn" (prn-str {:mat @counts :thresh (spy (/ (+ (apply min @good-probs) (apply max @bad-probs)) 2))}))
+      (spit "gib_model.edn" (prn-str {:mat @counts :thresh (/ (+ (apply min @good-probs) (apply max @bad-probs)) 2)}))
       )
 ))
 
