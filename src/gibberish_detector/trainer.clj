@@ -68,7 +68,6 @@
         (doseq [[a b] (ngram 2 line)]
           (swap! counts #(update-in % [(pos a) (pos b)] inc)))))
 
-    (debug (count (first  @counts)))
     ; Normalize the counts so that they become log probabilities.
     ; We use log probabilities rather than straight probabilities to avoid
     ; numeric underflow issues with long texts.
@@ -95,8 +94,6 @@
         (doseq [line (line-seq rdr)]
           (swap! bad-probs #(conj % (avg-transition-prob line @counts)))))
 
-      (debug (apply min @good-probs))
-      (debug (apply max @bad-probs))
       (spit "gib_model.edn" (prn-str {:mat @counts :thresh (spy (/ (+ (apply min @good-probs) (apply max @bad-probs)) 2))}))
       )
 ))
