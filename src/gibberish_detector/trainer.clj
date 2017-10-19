@@ -1,5 +1,6 @@
 (ns gibberish-detector.trainer
-  (:require [clojure.string :as s]))
+  (:require [clojure.string :as s]
+            [clojure.java.io :as io]))
 
 
 (def accepted-chars #{"a" "b" "c" "d" "e" "f" "g" "h" "i"
@@ -63,7 +64,7 @@
     ; Count transitions from big text file, taken
     ; from http://norvig.com/spell-correct.html
 
-    (with-open [rdr (clojure.java.io/reader "resources/big.txt")]
+    (with-open [rdr (clojure.java.io/reader (io/resource "big.txt"))]
       (doseq [line (line-seq rdr)]
         (doseq [[a b] (ngram 2 line)]
           (swap! counts #(update-in % [(pos a) (pos b)] inc)))))
@@ -85,16 +86,16 @@
           ]
 
 
-      (with-open [rdr (clojure.java.io/reader "resources/good.txt")]
+      (with-open [rdr (clojure.java.io/reader (io/resource "good.txt"))]
         (doseq [line (line-seq rdr)]
           (swap! good-probs #(conj % (avg-transition-prob line @counts)))
           ))
 
-      (with-open [rdr (clojure.java.io/reader "resources/bad.txt")]
+      (with-open [rdr (clojure.java.io/reader (io/resource "bad.txt"))]
         (doseq [line (line-seq rdr)]
           (swap! bad-probs #(conj % (avg-transition-prob line @counts)))))
 
-      (spit "resources/gib_model.edn" (prn-str {:mat @counts :thresh (/ (+ (apply min @good-probs) (apply max @bad-probs)) 2)}))
+      (spit (io/resource "gib_model.edn" )(prn-str {:mat @counts :thresh (/ (+ (apply min @good-probs) (apply max @bad-probs)) 2)}))
       )
 ))
 
