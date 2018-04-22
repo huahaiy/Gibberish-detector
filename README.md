@@ -10,8 +10,8 @@ A key difference between this implementation and @rrenaud's is that in this impl
 
 ## Installation
 
-```clojure 
-[juji/gibberish-detector "0.1.2-SNAPSHOT"]
+```clojure
+[juji/gibberish-detector "0.1.9-SNAPSHOT"]
 ```
 
 OR
@@ -43,14 +43,14 @@ Require ```[gibberish-detector.detect]```
 ### Might be Useful
 #### Adding more data
 ##### big.txt
-The ```big.txt``` file is used in ```trainer.clj``` to initialize the markov chain. 
+The ```big.txt``` file is used in ```trainer.clj``` to initialize the markov chain.
 ```clojure
 (with-open [rdr (clojure.java.io/reader "big.txt")]
   (doseq [line (line-seq rdr)]
     (doseq [[a b] (ngram 2 line)]
       (swap! counts #(update-in % [(pos a) (pos b)] inc)))))
 ```
-If you wish to replace big.txt with another large text file, replace ```"big.txt"``` with the name of the new file. 
+If you wish to replace big.txt with another large text file, replace ```"big.txt"``` with the name of the new file.
 The new file should be located in the root project directory.
 
 ##### good.txt
@@ -73,7 +73,7 @@ Every line in ```bad.txt``` consists of random characters (aka gibberish).
 If you wish to replace ```bad.txt``` with another file whose lines are NOT gibberish then simply change ```"bad.txt"``` to the name of the new file located in the root project directory.
 ## License
 
-Copyright © 2017 
+Copyright © 2017
 
 Distributed under the Eclipse Public License either version 1.0 or (at
 your option) any later version.

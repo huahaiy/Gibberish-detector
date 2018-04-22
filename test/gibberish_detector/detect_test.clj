@@ -16,4 +16,8 @@
   (is (= false
          (is-gibberish? "Sup dawg. what up? How's it going there.")))
   (is (= true
-         (is-gibberish? "hello ad af saf e aifdsaj fsadifj asljds iflasdj fdasilf sajif salf saijdfsa"))))
+         (is-gibberish? "hello ad af saf e aifdsaj fsadifj asljds iflasdj fdasilf sajif salf saijdfsa")))
+  (is (= false
+         (is-gibberish? "")))
+  (is (= true
+         (is-gibberish? ","))))
