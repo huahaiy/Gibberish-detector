@@ -41,7 +41,9 @@
                              count)]
     ;; (println (mapv #(get @trie %) input))
     ;; returns true if 50% or more words are gibberish
-    (>= 0.50 (/ num-true-values (count input)))))
+    (if (string/blank? input)
+      false
+      (>= 0.50 (/ num-true-values (count input))))))
 
 (defn is-gibberish?
   "Determine if the given input is gibberish. Returns true if it is gibberish, false otherwise"
