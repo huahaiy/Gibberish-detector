@@ -17,7 +17,7 @@ A key difference between this implementation and @rrenaud's is that in this impl
 OR
 
 ```bash
-git clone https://github.com/slandau4/Gibberish-detector
+git clone https://github.com/huahaiy/Gibberish-detector
 ```
 Note: You will have to do ```lein run``` in order for the program to generate the data file it needs to determine if input is gibberish.
 After that simply call is the ```is-gibberish?``` function in ```detect.clj```.
