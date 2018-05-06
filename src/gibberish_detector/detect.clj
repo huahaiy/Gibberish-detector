@@ -16,7 +16,7 @@
 (process-file (io/file (io/resource "words.txt")))
 
 
-(defn- count-words
+#_(defn- count-words
   [input]
   (count (re-seq #"\S+" (string/trim input))))
 
@@ -27,13 +27,12 @@
 (defn- dictionary-test
   "Test to see if each word of the input exists in
   the english language dictionary. Will return true
-  if more than 50% of the words are NOT in the dictionary
-  and false if more than 50% are in teh dictionary (if more
-  than 50% of the input is gibberish true will be returned)"
+  if 50% or more of the words are NOT in the dictionary
+  and false if more than 50% are in the dictionary."
   [input]
   (let [input (-> input
                   string/lower-case
-                  (string/replace #"\.|\?|!|," "")
+                  (string/replace #"\.|\?|!|,|\d+((\-)\d+)*" " ")
                   split-words)
         num-true-values (->> input
                              (mapv #(get @trie %))
@@ -45,7 +44,7 @@
       (>= 0.50 (/ num-true-values (count input)))
       true)))
 
-(defn is-gibberish?
+#_(defn is-gibberish?
   "Determine if the given input is gibberish. Returns true if it is gibberish, false otherwise"
   [input]
   (if (and (>= 5 (count-words input))
@@ -56,14 +55,11 @@
           thresh (:thresh data)]
       (<= (trainer/avg-transition-prob input mat) thresh))))
 
-
-;; (split-words "")
-
-;; (dictionary-test "hello dafa fd a")
-;; (dictionary-test "hello")
-;; (dictionary-test "faaadfadddd")
-;; (dictionary-test "hello my old friend it ")
-;; (dictionary-test "yeah")
-
-;; (time (pmap read-line (io/file (io/resource "words.txt"))))
-;; (println (time (slurp (io/resource "words.txt"))))
+(defn is-gibberish?
+  "Determine if the given input is gibberish. Returns true if it is gibberish, false otherwise"
+  [input]
+  (let [escaped-patterns #"\d+((\.|\,|\-|\s)\d+)*"
+        escaped-input    (string/trim (string/replace input escaped-patterns ""))]
+    (if (string/blank? escaped-input)
+      false
+      (dictionary-test input))))

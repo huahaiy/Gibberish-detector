@@ -8,6 +8,10 @@ For a full description of how it works, please refer to his README.
 
 A key difference between this implementation and @rrenaud's is that in this implementation, false will be printed if a sentence is not gibberish and true will be printed if it is.
 
+## NOTE on Current Version
+
+This version does not use learned HMM gibberish detector. The most recent version ultilize such implementation is in _v0-1-9_ branch or _tags/v0.1.9_.
+
 ## Installation
 
 ```clojure
@@ -17,7 +21,7 @@ A key difference between this implementation and @rrenaud's is that in this impl
 OR
 
 ```bash
-git clone https://github.com/slandau4/Gibberish-detector
+git clone https://github.com/huahaiy/Gibberish-detector
 ```
 Note: You will have to do ```lein run``` in order for the program to generate the data file it needs to determine if input is gibberish.
 After that simply call is the ```is-gibberish?``` function in ```detect.clj```.

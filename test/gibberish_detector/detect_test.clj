@@ -20,4 +20,8 @@
   (is (= false
          (is-gibberish? "")))
   (is (= true
-         (is-gibberish? ","))))
+         (is-gibberish? ",")))
+  (is (= false
+         (is-gibberish? "9173232232")))
+  (is (= false
+         (is-gibberish? "917-323-2232"))))
