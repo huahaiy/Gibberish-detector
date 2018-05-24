@@ -32,7 +32,7 @@
   [input]
   (let [input (-> input
                   string/lower-case
-                  (string/replace #"\.|\?|!|,|\d+((\-)\d+)*" " ")
+                  (string/replace #"\.|\?|!|,|\d|;|\\|\/|@|:|#|\$|%|\^|&|\*|\(|\)|\-|_|\+|=|\{|\[|\}|\]|\||\"|'|<|>|`|~" " ")
                   split-words)
         num-true-values (->> input
                              (mapv #(get @trie %))
@@ -42,7 +42,7 @@
     ;; returns true if 50% or more words are gibberish
     (if (seq input)
       (>= 0.50 (/ num-true-values (count input)))
-      true)))
+      false)))
 
 #_(defn is-gibberish?
   "Determine if the given input is gibberish. Returns true if it is gibberish, false otherwise"

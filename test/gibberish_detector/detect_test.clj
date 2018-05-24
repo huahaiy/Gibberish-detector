@@ -19,9 +19,13 @@
          (is-gibberish? "hello ad af saf e aifdsaj fsadifj asljds iflasdj fdasilf sajif salf saijdfsa")))
   (is (= false
          (is-gibberish? "")))
-  (is (= true
+  (is (= false
          (is-gibberish? ",")))
   (is (= false
          (is-gibberish? "9173232232")))
   (is (= false
-         (is-gibberish? "917-323-2232"))))
+         (is-gibberish? "917-323-2232")))
+  (is (= false
+         (is-gibberish? "20/04/2018")))
+  (is (= false
+         (is-gibberish? "09.92.91"))))
