@@ -3,14 +3,10 @@
 
 # gibberish-detector
 
-Gibberish-detector is a Clojure port of @rrenaud's python [gibberish detector](https://github.com/rrenaud/Gibberish-Detector).
-For a full description of how it works, please refer to his README.
+Gibberish-detector is built upon a Clojure port of @rrenaud's python [gibberish detector](https://github.com/rrenaud/Gibberish-Detector).
+For a full description of how the HMM classifier works, please refer to his README.
 
-A key difference between this implementation and @rrenaud's is that in this implementation, false will be printed if a sentence is not gibberish and true will be printed if it is.
-
-## NOTE on Current Version
-
-This version does not use learned HMM gibberish detector. The most recent version ultilize such implementation is in _v0-1-9_ branch or _tags/v0.1.9_.
+A key difference between this implementation and @rrenaud's is that in this implementation, false will be printed if a sentence is not gibberish and true will be printed if it is. Besides, this detector include some heristic rules in determining when to use HMM classifer and when to use direct dictionary check.
 
 ## Installation
 
