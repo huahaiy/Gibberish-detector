@@ -1,4 +1,4 @@
-(ns gibberish-detector.detect_test
+(ns gibberish-detector.detect-test
   (:require [clojure.test :refer :all]
             [gibberish-detector.detect :refer :all]))
 
@@ -28,4 +28,6 @@
   (is (= false
          (is-gibberish? "20/04/2018")))
   (is (= false
-         (is-gibberish? "09.92.91"))))
+         (is-gibberish? "09.92.91")))
+  (is (= true
+         (is-gibberish? "A.b. C."))))
