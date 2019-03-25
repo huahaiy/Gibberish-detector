@@ -11,7 +11,7 @@ A key difference between this implementation and @rrenaud's is that in this impl
 ## Installation
 
 ```clojure
-[juji/gibberish-detector "0.2.2-SNAPSHOT"]
+[juji/gibberish-detector "0.2.3-SNAPSHOT"]
 ```
 
 OR
