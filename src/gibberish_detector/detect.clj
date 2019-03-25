@@ -59,7 +59,7 @@
       (let [word-count (count-words escaped-input)]
         (and (< word-count 5)
              (>
-              (count (filter #(-> % count (< 3)) (split-words escaped-input)))
+              (count (filter #(-> % count (<= 3)) (split-words escaped-input)))
               (/ word-count 2))))
       (<= (trainer/avg-transition-prob input mat) thresh)
       :else
