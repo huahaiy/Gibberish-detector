@@ -30,4 +30,15 @@
   (is (= false
          (is-gibberish? "09.92.91")))
   (is (= true
-         (is-gibberish? "A.b. C."))))
+         (is-gibberish? "A.b. C.")))
+  (is (= false
+         (is-gibberish? "A.b. C." {:gt 4 :unk-thresh 0.6 :custom-only true})))
+  (is (= false
+         (is-gibberish? "aksdjflak" {:gt 4 :unk-thresh 0.6 :custom-only true})))
+  (is (= true
+         (is-gibberish? "aksdjflak asdfas jalsdkjlkaj jasdlkfjlk kljlkjlkj" {:gt 4 :unk-thresh 0.6 :custom-only true})))
+  (is (= false
+         (is-gibberish? "my name is ajkdljf asldkfja")))
+  (is (= true
+         (is-gibberish? "my name is ajkdljf asldkfja" {:gt 4 :unk-thresh 0.33})))
+  )
