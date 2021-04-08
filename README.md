@@ -11,7 +11,7 @@ A key difference between this implementation and @rrenaud's is that in this impl
 ## Installation
 
 ```clojure
-[juji/gibberish-detector "0.2.3-SNAPSHOT"]
+[juji/gibberish-detector "0.2.4-SNAPSHOT"]
 ```
 
 OR
@@ -38,6 +38,10 @@ Require ```[gibberish-detector.detect]```
 ```(is-gibberish? "Hey what's up")``` => false
 
 ```(is-gibberish? "i adfsaf afeia dasf safsa nnn12")``` => true
+
+```(is-gibberish? "aksdjflak" {:gt 4 :unk-thresh 0.6 :custom-only true})``` => false
+
+```(is-gibberish? "aksdjflak asdfas jalsdkjlkaj jasdlkfjlk kljlkjlkj" {:gt 4 :unk-thresh 0.6 :custom-only true})``` => true
 
 
 ### Might be Useful
