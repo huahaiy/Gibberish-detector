@@ -1,7 +1,7 @@
 (ns gibberish-detector.detect
   (:require [gibberish-detector.trainer :as trainer]
             [clojure.java.io :as io]
-            [clojure.string :as string]
+            [clojure.string :as s]
             [clojure.edn :as edn]
             [trie.core :as t]))
 
@@ -12,15 +12,15 @@
 
 (defn- process-file
   [file]
-  (with-open [rdr (clojure.java.io/reader file)]
+  (with-open [rdr (io/reader file)]
     (doseq [line (line-seq rdr)]
-      (swap! trie #(conj % (string/lower-case (string/trim line)))))))
+      (swap! trie #(conj % (s/lower-case (s/trim line)))))))
 
 (process-file (io/file (io/resource "words.txt")))
 
 (defn- split-words
   [input]
-  (re-seq #"\S+" (string/trim input)))
+  (re-seq #"\S+" (s/trim input)))
 
 (defn- count-words
   [input]
@@ -28,11 +28,11 @@
 
 (defn- escape-numbers
   [input]
-  (string/replace input #"\d+((\.|\,|\-|\s)\d+)*" ""))
+  (s/replace input #"\d+((\.|\,|\-|\s)\d+)*" ""))
 
 (defn- remove-puncs
   [input]
-  (string/replace input #"\.|\?|!|,|\d|;|\\|\/|@|:|#|\$|%|\^|&|\*|\(|\)|\-|_|\+|=|\{|\[|\}|\]|\||\"|'|<|>|`|~" " "))
+  (s/replace input #"\.|\?|!|,|\d|;|\\|\/|@|:|#|\$|%|\^|&|\*|\(|\)|\-|_|\+|=|\{|\[|\}|\]|\||\"|'|<|>|`|~" " "))
 
 (defn- dictionary-test
   "Test to see if each word of the input exists in
@@ -65,30 +65,31 @@
   ([input {:keys [gt unk-thresh custom-only]}]
    (when custom-only
      (assert gt "Please add a condition for custom only detection."))
-   (let [escaped-input (-> input escape-numbers remove-puncs string/trim)
-         word-count (if (string/blank? escaped-input) 0 (count-words escaped-input))]
+   (let [escaped-input (-> input escape-numbers remove-puncs s/trim)
+         word-count    (if (s/blank? escaped-input) 0 (count-words escaped-input))]
      (cond
        (= 0 word-count) false
        (and gt (> word-count gt))
-       (dictionary-test (-> escaped-input string/lower-case split-words) (or unk-thresh 0.5))
+       (dictionary-test (-> escaped-input s/lower-case split-words)
+                        (or unk-thresh 0.5))
 
        (and (< word-count 5)
             (>
-             (count (filter #(-> % count (<= 3)) (split-words escaped-input)))
-             (/ word-count 2))
+              (count (filter #(-> % count (<= 3)) (split-words escaped-input)))
+              (/ word-count 2))
             (not custom-only))
        (<= (trainer/avg-transition-prob input mat) thresh)
 
        (not custom-only)
-       (dictionary-test (-> escaped-input string/lower-case split-words))
+       (dictionary-test (-> escaped-input s/lower-case split-words))
 
        :else false))))
 
 #_(defn is-gibberish?
-  "Determine if the given input is gibberish. Returns true if it is gibberish, false otherwise"
-  [input]
-  (let [escaped-patterns #"\d+((\.|\,|\-|\s)\d+)*"
-        escaped-input    (string/trim (string/replace input escaped-patterns ""))]
-    (if (string/blank? escaped-input)
-      false
-      (dictionary-test input))))
+    "Determine if the given input is gibberish. Returns true if it is gibberish, false otherwise"
+    [input]
+    (let [escaped-patterns #"\d+((\.|\,|\-|\s)\d+)*"
+          escaped-input    (s/trim (s/replace input escaped-patterns ""))]
+      (if (s/blank? escaped-input)
+        false
+        (dictionary-test input))))
