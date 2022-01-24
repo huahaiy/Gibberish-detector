@@ -1,4 +1,4 @@
-[![Clojars Project](https://img.shields.io/clojars/v/juji/gibberish-detector.svg)](https://clojars.org/juji/gibberish-detector)
+[![Clojars Project](https://img.shields.io/clojars/v/juji/gibberish-detector.svg?color=success)](https://clojars.org/juji/gibberish-detector)
 
 
 # gibberish-detector
@@ -11,7 +11,7 @@ A key difference between this implementation and @rrenaud's is that in this impl
 ## Installation
 
 ```clojure
-[juji/gibberish-detector "0.2.4-SNAPSHOT"]
+[juji/gibberish-detector "0.3.0"]
 ```
 
 OR
